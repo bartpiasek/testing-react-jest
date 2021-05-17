@@ -1,4 +1,8 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import {
+  render,
+  screen,
+  waitFor,
+} from "../../../test-utils/testing-library-utils";
 import OrderEntry from "../OrderEntry";
 import { rest } from "msw";
 import { server } from "../../../mocks/server";
@@ -16,7 +20,7 @@ test("Handles error for scoops and topping routes", async () => {
   render(<OrderEntry />);
 
   await waitFor(async () => {
-    const alerts = await screen.findAllByRole("alert");
+    const alerts = await screen.getAllByRole("alert");
     expect(alerts).toHaveLength(2);
   });
 });

@@ -1,12 +1,12 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen } from "../../../test-utils/testing-library-utils";
 import Options from "../Options";
 import { OrderDetailsProvider } from "../../../context/OrderDetails";
 
 test("Displays image for each scoop option from server", async () => {
-  render(<Options optionType="scoops" />, { wrapper: OrderDetailsProvider });
+  render(<Options optionType="scoops" />);
 
   // find images
-  const scoopImages = await screen.findAllByRole("img", { name: /scoop$/i });
+  const scoopImages = await screen.getAllByRole("img", { name: /scoop$/i });
   expect(scoopImages).toHaveLength(2);
 
   // confirm alt text of images
@@ -15,10 +15,10 @@ test("Displays image for each scoop option from server", async () => {
 });
 
 test("Displays image for each topping option from server", async () => {
-  render(<Options optionType="toppings" />, { wrapper: OrderDetailsProvider });
+  render(<Options optionType="toppings" />);
 
   // find images, expect 3 based on what msw returns
-  const images = await screen.findAllByRole("img", {
+  const images = await screen.getAllByRole("img", {
     name: /topping$/i,
   });
   expect(images).toHaveLength(3);
